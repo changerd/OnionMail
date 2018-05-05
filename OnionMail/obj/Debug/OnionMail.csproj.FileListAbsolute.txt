@@ -1,0 +1,9 @@
+D:\pr\OnionMail\OnionMail\bin\Debug\OnionMail.exe.config
+D:\pr\OnionMail\OnionMail\bin\Debug\OnionMail.exe
+D:\pr\OnionMail\OnionMail\bin\Debug\OnionMail.pdb
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.csprojResolveAssemblyReference.cache
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.Properties.Resources.resources
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.csproj.GenerateResource.Cache
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.csproj.CoreCompileInputs.cache
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.exe
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.pdb

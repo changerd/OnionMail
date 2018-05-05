@@ -1,0 +1,13 @@
+{
+  "User": {
+    "Id": 2060640,
+    "Username": "changerd",
+    "Name": "Slava Morza",
+    "Email": "bloodreek@gmail.com",
+    "AvatarUrl": "https://secure.gravatar.com/avatar/d38e59cec497f6d5de9c3a3759cb466e?s=80&d=identicon",
+    "PrivateToken": "25ec97094d1d4b7ecb60ba2a5d4700708af4559c244a6b4255764d996acac54c",
+    "Host": "https://gitlab.com",
+    "TwoFactorEnabled": false,
+    "ApiVersion": 3
+  }
+}
