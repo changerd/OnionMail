@@ -49,6 +49,7 @@
             this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword.TabIndex = 3;
             this.textBoxPassword.Tag = "Пароль...";
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // comboBoxMail
             // 
@@ -85,7 +86,7 @@
             this.MinimumSize = new System.Drawing.Size(268, 261);
             this.Name = "Login";
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Login";
+            this.Text = "Вход";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
