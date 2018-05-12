@@ -28,7 +28,7 @@ namespace OnionMail
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            string login = textBoxLogin.Text + comboBoxMail.Text;            
+            string login = textBoxLogin.Text + "@" +comboBoxMail.Text;            
             try
             {
                 if (textBoxLogin.Text == null || textBoxLogin.Text == "")
@@ -58,14 +58,18 @@ namespace OnionMail
         }
         public void GetImapAdress()
         {
-            accessAdress mailru = new accessAdress { Name = "@mail.ru", Url = "imap.mail.ru" };
-            accessAdress gmail = new accessAdress { Name = "@gmail.com", Url = "imap.gmail.com" };
-            accessAdress yandex = new accessAdress { Name = "@yandex.ru", Url = "imap.yandex.ru" };
+            accessAdress mailru = new accessAdress { Name = "mail.ru", Url = "imap.mail.ru" };
+            accessAdress gmail = new accessAdress { Name = "gmail.com", Url = "imap.gmail.com" };
+            accessAdress yandex = new accessAdress { Name = "yandex.ru", Url = "imap.yandex.ru" };
             List<accessAdress> listMails = new List<accessAdress> { mailru, gmail, yandex };
             comboBoxMail.DataSource = listMails;
             comboBoxMail.DisplayMember = "Name";
-            comboBoxMail.ValueMember = "Url";            
+            comboBoxMail.ValueMember = "Url";   
+        }
 
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }    
 }
