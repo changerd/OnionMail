@@ -86,6 +86,9 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login.resx">
@@ -94,6 +97,9 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\OnionMail.Login.resources" />
+    <EmbeddedResource Include="obj\Debug\OnionMail.MainWindow.resources" />
+    <EmbeddedResource Include="obj\Debug\OnionMail.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,7 +109,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\OnionMail.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\OnionMail.csproj.CopyComplete" />
+    <None Include="obj\Debug\OnionMail.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\OnionMail.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\OnionMail.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\OnionMail.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
+    <None Include="packages\MetroFramework.1.2.0.3\MetroFramework.1.2.0.3.nupkg" />
+    <None Include="packages\MetroFramework.Design.1.2.0.3\MetroFramework.Design.1.2.0.3.nupkg" />
+    <None Include="packages\MetroFramework.Design.1.2.0.3\Tools\install.ps1" />
+    <None Include="packages\MetroFramework.Fonts.1.2.0.3\MetroFramework.Fonts.1.2.0.3.nupkg" />
+    <None Include="packages\MetroFramework.RunTime.1.2.0.3\MetroFramework.RunTime.1.2.0.3.nupkg" />
+    <None Include="packages\S22.Imap.3.6.0.0\S22.Imap.3.6.0.0.nupkg" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,7 +150,33 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\MetroFramework.dll" />
+    <Content Include="bin\Debug\MetroFramework.Fonts.dll" />
+    <Content Include="bin\Debug\OnionMail.exe" />
+    <Content Include="bin\Debug\OnionMail.pdb" />
+    <Content Include="bin\Debug\S22.Imap.dll" />
+    <Content Include="bin\Debug\S22.Imap.xml" />
     <Content Include="MetroFramework.txt" />
+    <Content Include="obj\Debug\OnionMail.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\OnionMail.exe" />
+    <Content Include="obj\Debug\OnionMail.pdb" />
+    <Content Include="packages\MetroFramework.1.2.0.3\Content\MetroFramework.txt" />
+    <Content Include="packages\MetroFramework.1.2.0.3\README.TXT" />
+    <Content Include="packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll" />
+    <Content Include="packages\MetroFramework.Design.1.2.0.3\README.TXT" />
+    <Content Include="packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll" />
+    <Content Include="packages\MetroFramework.Fonts.1.2.0.3\README.TXT" />
+    <Content Include="packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll" />
+    <Content Include="packages\MetroFramework.RunTime.1.2.0.3\README.TXT" />
+    <Content Include="packages\S22.Imap.3.6.0.0\lib\net35\S22.Imap.dll" />
+    <Content Include="packages\S22.Imap.3.6.0.0\lib\net35\S22.Imap.XML" />
+    <Content Include="packages\S22.Imap.3.6.0.0\lib\net40\S22.Imap.dll" />
+    <Content Include="packages\S22.Imap.3.6.0.0\lib\net40\S22.Imap.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="packages\New Folder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
