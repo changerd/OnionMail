@@ -7,9 +7,6 @@ D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.csproj.GenerateResource.Cache
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.csproj.CoreCompileInputs.cache
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.exe
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.pdb
-D:\pr\OnionMail\OnionMail\bin\Debug\MetroFramework.dll
-D:\pr\OnionMail\OnionMail\bin\Debug\MetroFramework.Fonts.dll
-D:\pr\OnionMail\OnionMail\bin\Debug\S22.Imap.dll
 D:\pr\OnionMail\OnionMail\bin\Debug\S22.Imap.xml
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.Login.resources
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.MainWindow.resources

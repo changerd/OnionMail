@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using MetroFramework.Controls;
+using System.IO;
 
 namespace OnionMail
 {
@@ -17,6 +19,9 @@ namespace OnionMail
         {
             InitializeComponent();
         }
+        string login = null;
+        string password = null;
+        string adress = null;
 
         private void metroTileLogOut_Click(object sender, EventArgs e)
         {
@@ -29,5 +34,21 @@ namespace OnionMail
         {
             Application.Exit();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            string path = "tempfile.txt";
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            string[] data;
+            string str = sr.ReadLine();
+            data = str.Split(';');
+            login = data[0];
+            password = data[1];
+            adress = data[2];
+            metroLabelStatusLogin.Text = login;
+            sr.Close();
+            File.Delete("tempfile.txt");
+        }
     }
+
 }

@@ -11,6 +11,7 @@ using MetroFramework;
 using MetroFramework.Forms;
 using S22.Imap;
 using System.Net.Sockets;
+using System.IO;
 
 namespace OnionMail
 {
@@ -37,7 +38,14 @@ namespace OnionMail
                     throw new Exception("Введите пароль");
                 using (ImapClient Client = new ImapClient(comboBoxMail.SelectedValue.ToString(), 993, login, textBoxPassword.Text, AuthMethod.Login, true))
                 {
+                    string path = "tempfile.txt";                    
                     MessageBox.Show("Вход выполнен успешно!", "Onion Mail");
+                    using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+                    {
+                        string text = login + ";" + textBoxPassword.Text + ";" + comboBoxMail.Text;
+                        sw.WriteLine(text);
+                        sw.Close();
+                    }
                     MainWindow mainwindow = new MainWindow();
                     mainwindow.Show();
                     this.Hide();
