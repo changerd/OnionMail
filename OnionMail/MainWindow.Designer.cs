@@ -110,6 +110,7 @@
             this.metroTileSendMSG.TabIndex = 3;
             this.metroTileSendMSG.Text = "Написать";
             this.metroTileSendMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileSendMSG.Click += new System.EventHandler(this.metroTileSendMSG_Click);
             // 
             // MainWindow
             // 

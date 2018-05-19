@@ -49,6 +49,19 @@ namespace OnionMail
             sr.Close();
             File.Delete("tempfile.txt");
         }
+
+        private void metroTileSendMSG_Click(object sender, EventArgs e)
+        {
+            string path = "tempfile.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                string text = login + ";" + password + ";" + adress;
+                sw.WriteLine(text);
+                sw.Close();
+            }
+            SendMessage form = new SendMessage();
+            form.Show();
+        }
     }
 
 }

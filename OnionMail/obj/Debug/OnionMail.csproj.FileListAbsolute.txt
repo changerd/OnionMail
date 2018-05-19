@@ -10,3 +10,4 @@ D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.pdb
 D:\pr\OnionMail\OnionMail\bin\Debug\S22.Imap.xml
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.Login.resources
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.MainWindow.resources
+D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.SendMessage.resources
