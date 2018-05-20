@@ -50,7 +50,8 @@ namespace OnionMail
                 string smtpadress = "smpt." + adress;
                 SmtpClient client = new SmtpClient(smtpadress, 587);
                 client.EnableSsl = true;
-                client.Credentials = new NetworkCredential(login, password);                
+                client.Credentials = new NetworkCredential(login, password);
+                message = new MailMessage();
                 message.From = new MailAddress(login);
                 message.To.Add(new MailAddress(textBoxTo.Text));
                 message.Subject = textBoxSubject.Text;
