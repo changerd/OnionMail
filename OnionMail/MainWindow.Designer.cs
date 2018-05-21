@@ -36,7 +36,10 @@
             this.metroTabPageSent = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPageTrash = new MetroFramework.Controls.MetroTabPage();
             this.metroTileSendMSG = new MetroFramework.Controls.MetroTile();
+            this.listBoxInboxUids = new System.Windows.Forms.ListBox();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.metroTabControl1.SuspendLayout();
+            this.metroTabPageInbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTileLogOut
@@ -53,7 +56,7 @@
             // metroLabelStatusLogin
             // 
             this.metroLabelStatusLogin.AutoSize = true;
-            this.metroLabelStatusLogin.Location = new System.Drawing.Point(542, 31);
+            this.metroLabelStatusLogin.Location = new System.Drawing.Point(529, 31);
             this.metroLabelStatusLogin.Name = "metroLabelStatusLogin";
             this.metroLabelStatusLogin.Size = new System.Drawing.Size(38, 19);
             this.metroLabelStatusLogin.TabIndex = 1;
@@ -67,16 +70,17 @@
             this.metroTabControl1.Location = new System.Drawing.Point(23, 102);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(728, 262);
+            this.metroTabControl1.Size = new System.Drawing.Size(728, 318);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 2;
             // 
             // metroTabPageInbox
             // 
+            this.metroTabPageInbox.Controls.Add(this.listBoxInboxUids);
             this.metroTabPageInbox.HorizontalScrollbarBarColor = true;
             this.metroTabPageInbox.Location = new System.Drawing.Point(4, 35);
             this.metroTabPageInbox.Name = "metroTabPageInbox";
-            this.metroTabPageInbox.Size = new System.Drawing.Size(720, 223);
+            this.metroTabPageInbox.Size = new System.Drawing.Size(720, 279);
             this.metroTabPageInbox.TabIndex = 1;
             this.metroTabPageInbox.Text = "Входящие";
             this.metroTabPageInbox.VerticalScrollbarBarColor = true;
@@ -86,7 +90,7 @@
             this.metroTabPageSent.HorizontalScrollbarBarColor = true;
             this.metroTabPageSent.Location = new System.Drawing.Point(4, 35);
             this.metroTabPageSent.Name = "metroTabPageSent";
-            this.metroTabPageSent.Size = new System.Drawing.Size(720, 223);
+            this.metroTabPageSent.Size = new System.Drawing.Size(720, 279);
             this.metroTabPageSent.TabIndex = 2;
             this.metroTabPageSent.Text = "Отправленные";
             this.metroTabPageSent.VerticalScrollbarBarColor = true;
@@ -112,11 +116,19 @@
             this.metroTileSendMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTileSendMSG.Click += new System.EventHandler(this.metroTileSendMSG_Click);
             // 
+            // listBoxInboxUids
+            // 
+            this.listBoxInboxUids.FormattingEnabled = true;
+            this.listBoxInboxUids.Location = new System.Drawing.Point(3, 17);
+            this.listBoxInboxUids.Name = "listBoxInboxUids";
+            this.listBoxInboxUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxInboxUids.TabIndex = 2;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 387);
+            this.ClientSize = new System.Drawing.Size(782, 443);
             this.Controls.Add(this.metroTileSendMSG);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.metroLabelStatusLogin);
@@ -128,6 +140,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.metroTabControl1.ResumeLayout(false);
+            this.metroTabPageInbox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +155,7 @@
         private MetroFramework.Controls.MetroTabPage metroTabPageSent;
         private MetroFramework.Controls.MetroTabPage metroTabPageTrash;
         private MetroFramework.Controls.MetroTile metroTileSendMSG;
+        private System.Windows.Forms.ListBox listBoxInboxUids;
+        private System.ComponentModel.BackgroundWorker bgWorker;
     }
 }
