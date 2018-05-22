@@ -24,8 +24,8 @@ namespace OnionMail
         string login = null;
         string password = null;
         string adress = null;
-        IEnumerable<uint> uids;
-        IEnumerable<MailMessage> messages;
+        //IEnumerable<uint> uids;
+        //IEnumerable<MailMessage> messages;
 
         private void metroTileLogOut_Click(object sender, EventArgs e)
         {
@@ -52,12 +52,11 @@ namespace OnionMail
             metroLabelStatusLogin.Text = login;
             sr.Close();
             File.Delete("tempfile.txt");
-            /*bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += (obj, ea) => GetListBoxUids(uids, messages);
-            bgWorker.RunWorkerAsync();*/
-            GetListBoxUidss(uids, messages);
-            listBoxInboxUids.DataSource = messages;
-            listBoxInboxUids.DisplayMember = messages.ToString();
+            bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (obj, ea) => GetListBoxUids();
+            bgWorker.RunWorkerAsync();
+            
+            
         }
 
         private void metroTileSendMSG_Click(object sender, EventArgs e)
@@ -72,13 +71,24 @@ namespace OnionMail
             SendMessage form = new SendMessage();
             form.Show();            
         }
-        public void GetListBoxUids(IEnumerable<uint> uidss, IEnumerable<MailMessage> messagess)
+        public void GetListBoxUids()
         {
             string imapadress = "imap." + adress;
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
-                uidss = Client.Search(SearchCondition.All());
-                messagess = Client.GetMessages(uidss.Reverse());
+                //label1.Text = "Загрузка...";
+                IEnumerable<uint> uids = Client.Search(SearchCondition.All());;
+                IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
+                List<MSGList> listmsg = new List<MSGList>();                
+                foreach (var m in messages)
+                {
+                    MSGList msg = new MSGList { mailsubject = m.Subject, uids = 0 };
+                    listmsg.Add(msg);
+                }                            
+                comboBox1.DataSource = listmsg;
+                comboBox1.DisplayMember = "mailsubject";
+                MessageBox.Show("Загрузка завершена");
+                //label1.Text = "Загрузка завершена";
             }
         }        
     }

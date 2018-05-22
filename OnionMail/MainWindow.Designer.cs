@@ -33,11 +33,13 @@
             this.metroLabelStatusLogin = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPageInbox = new MetroFramework.Controls.MetroTabPage();
+            this.listBoxInboxUids = new System.Windows.Forms.ListBox();
             this.metroTabPageSent = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPageTrash = new MetroFramework.Controls.MetroTabPage();
             this.metroTileSendMSG = new MetroFramework.Controls.MetroTile();
-            this.listBoxInboxUids = new System.Windows.Forms.ListBox();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPageInbox.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +87,14 @@
             this.metroTabPageInbox.Text = "Входящие";
             this.metroTabPageInbox.VerticalScrollbarBarColor = true;
             // 
+            // listBoxInboxUids
+            // 
+            this.listBoxInboxUids.FormattingEnabled = true;
+            this.listBoxInboxUids.Location = new System.Drawing.Point(3, 17);
+            this.listBoxInboxUids.Name = "listBoxInboxUids";
+            this.listBoxInboxUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxInboxUids.TabIndex = 2;
+            // 
             // metroTabPageSent
             // 
             this.metroTabPageSent.HorizontalScrollbarBarColor = true;
@@ -100,7 +110,7 @@
             this.metroTabPageTrash.HorizontalScrollbarBarColor = true;
             this.metroTabPageTrash.Location = new System.Drawing.Point(4, 35);
             this.metroTabPageTrash.Name = "metroTabPageTrash";
-            this.metroTabPageTrash.Size = new System.Drawing.Size(720, 223);
+            this.metroTabPageTrash.Size = new System.Drawing.Size(720, 279);
             this.metroTabPageTrash.TabIndex = 3;
             this.metroTabPageTrash.Text = "Корзина";
             this.metroTabPageTrash.VerticalScrollbarBarColor = true;
@@ -116,19 +126,30 @@
             this.metroTileSendMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTileSendMSG.Click += new System.EventHandler(this.metroTileSendMSG_Click);
             // 
-            // listBoxInboxUids
+            // label1
             // 
-            this.listBoxInboxUids.FormattingEnabled = true;
-            this.listBoxInboxUids.Location = new System.Drawing.Point(3, 17);
-            this.listBoxInboxUids.Name = "listBoxInboxUids";
-            this.listBoxInboxUids.Size = new System.Drawing.Size(714, 251);
-            this.listBoxInboxUids.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(194, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(258, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 5;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 443);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.metroTileSendMSG);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.metroLabelStatusLogin);
@@ -157,5 +178,7 @@
         private MetroFramework.Controls.MetroTile metroTileSendMSG;
         private System.Windows.Forms.ListBox listBoxInboxUids;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
