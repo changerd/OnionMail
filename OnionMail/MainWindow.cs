@@ -24,8 +24,8 @@ namespace OnionMail
         string login = null;
         string password = null;
         string adress = null;
-        //IEnumerable<uint> uids;
-        //IEnumerable<MailMessage> messages;
+        IEnumerable<uint> uids;
+        List<MailMessage> messagess = new List<MailMessage>();
 
         private void metroTileLogOut_Click(object sender, EventArgs e)
         {
@@ -54,9 +54,7 @@ namespace OnionMail
             File.Delete("tempfile.txt");
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetListBoxUids();
-            bgWorker.RunWorkerAsync();
-            
-            
+            bgWorker.RunWorkerAsync();           
         }
 
         private void metroTileSendMSG_Click(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace OnionMail
                 sw.Close();
             }
             SendMessage form = new SendMessage();
-            form.Show();            
+            form.Show();
         }
         public void GetListBoxUids()
         {
@@ -77,18 +75,10 @@ namespace OnionMail
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
                 //label1.Text = "Загрузка...";
-                IEnumerable<uint> uids = Client.Search(SearchCondition.All());;
+                IEnumerable<uint> uids = Client.Search(SearchCondition.All()); ;
                 IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
-                List<MSGList> listmsg = new List<MSGList>();                
-                foreach (var m in messages)
-                {
-                    MSGList msg = new MSGList { mailsubject = m.Subject, uids = 0 };
-                    listmsg.Add(msg);
-                }                            
-                comboBox1.DataSource = listmsg;
-                comboBox1.DisplayMember = "mailsubject";
+                messagess = messages.ToList();                
                 MessageBox.Show("Загрузка завершена");
-                //label1.Text = "Загрузка завершена";
             }
         }        
     }
