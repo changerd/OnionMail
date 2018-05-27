@@ -19,6 +19,8 @@ namespace OnionMail
         string login = null;
         string password = null;
         string adress = null;
+        public string to = null;
+        public string subject = null;
         string[] attachmentfilenames;
         MailMessage message = new MailMessage();
         public SendMessage()
@@ -39,6 +41,8 @@ namespace OnionMail
             //label1.Text = login;
             sr.Close();
             File.Delete("tempfile.txt");
+            textBoxTo.Text = to;
+            textBoxSubject.Text = subject;
         }
 
         private void metroTileSendMSG_Click(object sender, EventArgs e)

@@ -9,8 +9,8 @@ namespace OnionMail
 {
     class MSGList
     {
-        public uint uids { get; set; }
-        public string mailsubject { get; set; }
+        public string mailhad { get; set; }
+        public string mailvalue { get; set; }
         //public MailMessage messages { get; set; }
     }
 }
