@@ -76,6 +76,7 @@ namespace OnionMail
             string imapadress = "imap." + adress;
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
+                //Client.DefaultMailbox = "[Gmail]/Корзина";
                 IEnumerable<uint> uids = Client.Search(SearchCondition.All());
                 IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
                 uidss = new List<uint>();
