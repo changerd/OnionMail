@@ -41,8 +41,12 @@
             this.metroTabPageTrash = new MetroFramework.Controls.MetroTabPage();
             this.metroTileSendMSG = new MetroFramework.Controls.MetroTile();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.listBoxSentUids = new System.Windows.Forms.ListBox();
+            this.listBoxTrashUids = new System.Windows.Forms.ListBox();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPageInbox.SuspendLayout();
+            this.metroTabPageSent.SuspendLayout();
+            this.metroTabPageTrash.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTileLogOut
@@ -73,7 +77,7 @@
             this.metroTabControl1.Enabled = false;
             this.metroTabControl1.Location = new System.Drawing.Point(27, 102);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(728, 352);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 2;
@@ -137,6 +141,7 @@
             // 
             // metroTabPageSent
             // 
+            this.metroTabPageSent.Controls.Add(this.listBoxSentUids);
             this.metroTabPageSent.HorizontalScrollbarBarColor = true;
             this.metroTabPageSent.Location = new System.Drawing.Point(4, 35);
             this.metroTabPageSent.Name = "metroTabPageSent";
@@ -147,6 +152,7 @@
             // 
             // metroTabPageTrash
             // 
+            this.metroTabPageTrash.Controls.Add(this.listBoxTrashUids);
             this.metroTabPageTrash.HorizontalScrollbarBarColor = true;
             this.metroTabPageTrash.Location = new System.Drawing.Point(4, 35);
             this.metroTabPageTrash.Name = "metroTabPageTrash";
@@ -170,6 +176,24 @@
             // 
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
+            // listBoxSentUids
+            // 
+            this.listBoxSentUids.FormattingEnabled = true;
+            this.listBoxSentUids.Location = new System.Drawing.Point(3, 42);
+            this.listBoxSentUids.Name = "listBoxSentUids";
+            this.listBoxSentUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxSentUids.TabIndex = 3;
+            this.listBoxSentUids.DoubleClick += new System.EventHandler(this.listBoxSentUids_DoubleClick);
+            // 
+            // listBoxTrashUids
+            // 
+            this.listBoxTrashUids.FormattingEnabled = true;
+            this.listBoxTrashUids.Location = new System.Drawing.Point(3, 42);
+            this.listBoxTrashUids.Name = "listBoxTrashUids";
+            this.listBoxTrashUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxTrashUids.TabIndex = 4;
+            this.listBoxTrashUids.DoubleClick += new System.EventHandler(this.listBoxTrashUids_DoubleClick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +211,8 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPageInbox.ResumeLayout(false);
+            this.metroTabPageSent.ResumeLayout(false);
+            this.metroTabPageTrash.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +232,7 @@
         private MetroFramework.Controls.MetroTile metroTileDeleteMSG;
         private MetroFramework.Controls.MetroTile metroTileReplyMSG;
         private MetroFramework.Controls.MetroTile metroTileRefreshInbox;
+        private System.Windows.Forms.ListBox listBoxSentUids;
+        private System.Windows.Forms.ListBox listBoxTrashUids;
     }
 }

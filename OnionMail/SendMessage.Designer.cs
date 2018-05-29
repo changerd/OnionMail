@@ -67,6 +67,7 @@
             this.metroCheckBoxAttachment.Location = new System.Drawing.Point(24, 448);
             this.metroCheckBoxAttachment.Name = "metroCheckBoxAttachment";
             this.metroCheckBoxAttachment.Size = new System.Drawing.Size(79, 15);
+            this.metroCheckBoxAttachment.Style = MetroFramework.MetroColorStyle.Green;
             this.metroCheckBoxAttachment.TabIndex = 2;
             this.metroCheckBoxAttachment.Text = "Вложение";
             this.metroCheckBoxAttachment.UseVisualStyleBackColor = true;
