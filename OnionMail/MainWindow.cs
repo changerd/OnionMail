@@ -25,6 +25,8 @@ namespace OnionMail
         string login = null;
         string password = null;
         string adress = null;
+        string trash = null;
+        string sent = null;
         List<uint> uidss = new List<uint>();
         List<MailMessage> messagess = new List<MailMessage>();
 
@@ -53,6 +55,21 @@ namespace OnionMail
             metroLabelStatusLogin.Text = login;
             sr.Close();
             File.Delete("tempfile.txt");
+            switch(adress)
+            {
+                case "mail.ru":
+                    sent = "Отправленные";
+                    trash = "Корзина";
+                    break;
+                case "gmail.com":
+                    sent = "[Gmail]/Отправленные";
+                    trash = "[Gmail]/Корзина";
+                    break;
+                case "yandex.ru":
+                    sent = "Отправленные";
+                    trash = "Удаленные";
+                    break;
+            }
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetListBoxUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
