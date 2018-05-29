@@ -47,8 +47,8 @@ namespace OnionMail
 
         private void metroTileSendMSG_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 if (textBoxTo.Text == null || textBoxTo.Text == "")
                     throw new Exception("Введите электронный адрес, кому нужно отправить сообщение.");
                 string smtpadress = "smtp." + adress;
@@ -71,11 +71,11 @@ namespace OnionMail
                 client.Send(message);
                 MessageBox.Show("Сообщение на " + textBoxTo.Text + " успешно отправлено.", "Onion Mail");
 
-            //}
-            //catch (Exception gg)
-            //{
-               // MessageBox.Show(gg.Message, "Ошибка");
-            //}
+            }
+            catch (Exception gg)
+            {
+                MessageBox.Show(gg.Message, "Ошибка");
+            }
         }
 
         private void metroCheckBoxAttachment_CheckedChanged(object sender, EventArgs e)
