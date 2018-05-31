@@ -135,18 +135,19 @@ namespace OnionMail
         public void GetTrashUids()
         {
             try
-            { 
-            string imapadress = "imap." + adress;
-            using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
-                Client.DefaultMailbox = trash;
-                IEnumerable<uint> uids = Client.Search(SearchCondition.All());
-                IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
-                uidsTrash = new List<uint>();
-                messagesTrash = new List<MailMessage>();
-                messagesTrash = messages.ToList();
-                uidsTrash = uids.ToList();
-                uidsTrash.Reverse();
+                string imapadress = "imap." + adress;
+                using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
+                {
+                    Client.DefaultMailbox = trash;
+                    IEnumerable<uint> uids = Client.Search(SearchCondition.All());
+                    IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
+                    uidsTrash = new List<uint>();
+                    messagesTrash = new List<MailMessage>();
+                    messagesTrash = messages.ToList();
+                    uidsTrash = uids.ToList();
+                    uidsTrash.Reverse();
+                }
             }
             catch (Exception gg)
             {
@@ -157,9 +158,9 @@ namespace OnionMail
         {
             if (metroTabControl1.SelectedIndex == 0)
             {
-                bgWorker = new BackgroundWorker();
+                bgWorker = new BackgroundWorker();                
                 bgWorker.DoWork += (obj, ea) => GetInboxUids();
-                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
                 bgWorker.RunWorkerAsync();
                 List<MSGList> list = new List<MSGList>();
                 foreach (var m in messagesInbox)
@@ -183,7 +184,7 @@ namespace OnionMail
             {
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetSentUids();
-                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerSent_RunWorkerCompleted);
                 bgWorker.RunWorkerAsync();
                 List<MSGList> list = new List<MSGList>();
                 foreach (var m in messagesSent)
@@ -207,7 +208,7 @@ namespace OnionMail
             {
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetTrashUids();
-                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+                bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerTrash_RunWorkerCompleted);
                 bgWorker.RunWorkerAsync();
                 List<MSGList> list = new List<MSGList>();
                 foreach (var m in messagesTrash)
@@ -249,11 +250,25 @@ namespace OnionMail
         {             
             Process.Start(e.LinkText);
         }
-        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bgWorkerInbox_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             metroTileDeleteMSG.Enabled = true;
+            metroTileRefreshInbox.Enabled = true;
+            metroTileReplyMSG.Enabled = true;
             listBoxInboxUids.Enabled = true;
+            metroTabControl1_SelectedIndexChanged(sender, e);
+        }
+        private void bgWorkerSent_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            metroTileSentRefresh.Enabled = true;
+            metroTileSentDeleteMSG.Enabled = true;
             listBoxSentUids.Enabled = true;
+            metroTabControl1_SelectedIndexChanged(sender, e);
+        }
+        private void bgWorkerTrash_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            metroTileTrashDeleteMSG.Enabled = true;
+            metroTileTrashRefresh.Enabled = true;
             listBoxTrashUids.Enabled = true;
             metroTabControl1_SelectedIndexChanged(sender, e);
         }
@@ -266,10 +281,12 @@ namespace OnionMail
                 Client.DeleteMessage(uidsInbox[listBoxInboxUids.SelectedIndex]);
             }
             metroTileDeleteMSG.Enabled = false;
+            metroTileRefreshInbox.Enabled = false;
+            metroTileReplyMSG.Enabled = false;
             listBoxInboxUids.Enabled = false;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetInboxUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
@@ -292,10 +309,12 @@ namespace OnionMail
         private void metroTileRefreshInbox_Click(object sender, EventArgs e)
         {
             metroTileDeleteMSG.Enabled = false;
+            metroTileRefreshInbox.Enabled = false;
+            metroTileReplyMSG.Enabled = false;
             listBoxInboxUids.Enabled = false;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetInboxUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
@@ -327,6 +346,60 @@ namespace OnionMail
             rtb.LinkClicked += richTextBox_LinkClicked;
             form.Controls.Add(rtb);
             rtb.Dock = DockStyle.Fill;
+        }
+
+        private void metroTileSentDeleteMSG_Click(object sender, EventArgs e)
+        {
+            string imapadress = "imap." + adress;
+            using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
+            {
+                Client.DeleteMessage(uidsSent[listBoxSentUids.SelectedIndex]);
+            }
+            metroTileSentRefresh.Enabled = false;
+            metroTileSentDeleteMSG.Enabled = false;
+            listBoxSentUids.Enabled = false;
+            bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (obj, ea) => GetSentUids();
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerAsync();
+        }
+
+        private void metroTileSentRefresh_Click(object sender, EventArgs e)
+        {
+            metroTileSentRefresh.Enabled = false;
+            metroTileSentDeleteMSG.Enabled = false;
+            listBoxSentUids.Enabled = false;
+            bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (obj, ea) => GetSentUids();
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerAsync();
+        }
+
+        private void metroTileTrashDeleteMSG_Click(object sender, EventArgs e)
+        {
+            string imapadress = "imap." + adress;
+            using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
+            {
+                Client.DeleteMessage(uidsTrash[listBoxTrashUids.SelectedIndex]);
+            }
+            metroTileTrashDeleteMSG.Enabled = false;
+            metroTileTrashRefresh.Enabled = false;
+            listBoxTrashUids.Enabled = false;
+            bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (obj, ea) => GetTrashUids();
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerAsync();
+        }
+
+        private void metroTileTrashRefresh_Click(object sender, EventArgs e)
+        {
+            metroTileTrashDeleteMSG.Enabled = false;
+            metroTileTrashRefresh.Enabled = false;
+            listBoxTrashUids.Enabled = false;
+            bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (obj, ea) => GetTrashUids();
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerAsync();
         }
     }
 }
