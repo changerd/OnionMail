@@ -42,15 +42,32 @@
             this.metroTileSentRefresh = new MetroFramework.Controls.MetroTile();
             this.listBoxSentUids = new System.Windows.Forms.ListBox();
             this.metroTabPageTrash = new MetroFramework.Controls.MetroTabPage();
+            this.metroTileTrashDeleteMSG = new MetroFramework.Controls.MetroTile();
+            this.metroTileTrashRefresh = new MetroFramework.Controls.MetroTile();
             this.listBoxTrashUids = new System.Windows.Forms.ListBox();
             this.metroTileSendMSG = new MetroFramework.Controls.MetroTile();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.metroTileTrashRefresh = new MetroFramework.Controls.MetroTile();
-            this.metroTileTrashDeleteMSG = new MetroFramework.Controls.MetroTile();
+            this.metroTabPageContactList = new MetroFramework.Controls.MetroTabPage();
+            this.listBoxContactList = new System.Windows.Forms.ListBox();
+            this.metroTileAddContact = new MetroFramework.Controls.MetroTile();
+            this.metroTileEditContact = new MetroFramework.Controls.MetroTile();
+            this.metroTileDeleteContact = new MetroFramework.Controls.MetroTile();
+            this.metroPanelContactInfo = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.textBoxContactSurname = new System.Windows.Forms.TextBox();
+            this.textBoxContactName = new System.Windows.Forms.TextBox();
+            this.richTextBoxContactDescription = new System.Windows.Forms.RichTextBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.textBoxContactEmail = new System.Windows.Forms.TextBox();
+            this.metroTileSendMSGContact = new MetroFramework.Controls.MetroTile();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPageInbox.SuspendLayout();
             this.metroTabPageSent.SuspendLayout();
             this.metroTabPageTrash.SuspendLayout();
+            this.metroTabPageContactList.SuspendLayout();
+            this.metroPanelContactInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTileLogOut
@@ -78,12 +95,13 @@
             this.metroTabControl1.Controls.Add(this.metroTabPageInbox);
             this.metroTabControl1.Controls.Add(this.metroTabPageSent);
             this.metroTabControl1.Controls.Add(this.metroTabPageTrash);
+            this.metroTabControl1.Controls.Add(this.metroTabPageContactList);
             this.metroTabControl1.Location = new System.Drawing.Point(27, 102);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 3;
             this.metroTabControl1.Size = new System.Drawing.Size(728, 352);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroTabControl1.TabIndex = 2;
+            this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.SelectedIndexChanged += new System.EventHandler(this.metroTabControl1_SelectedIndexChanged);
             // 
             // metroTabPageInbox
@@ -204,6 +222,30 @@
             this.metroTabPageTrash.Text = "Корзина";
             this.metroTabPageTrash.VerticalScrollbarBarColor = true;
             // 
+            // metroTileTrashDeleteMSG
+            // 
+            this.metroTileTrashDeleteMSG.Enabled = false;
+            this.metroTileTrashDeleteMSG.Location = new System.Drawing.Point(3, 3);
+            this.metroTileTrashDeleteMSG.Name = "metroTileTrashDeleteMSG";
+            this.metroTileTrashDeleteMSG.Size = new System.Drawing.Size(115, 33);
+            this.metroTileTrashDeleteMSG.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileTrashDeleteMSG.TabIndex = 8;
+            this.metroTileTrashDeleteMSG.Text = "Удалить письмо";
+            this.metroTileTrashDeleteMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileTrashDeleteMSG.Click += new System.EventHandler(this.metroTileTrashDeleteMSG_Click);
+            // 
+            // metroTileTrashRefresh
+            // 
+            this.metroTileTrashRefresh.Enabled = false;
+            this.metroTileTrashRefresh.Location = new System.Drawing.Point(638, 3);
+            this.metroTileTrashRefresh.Name = "metroTileTrashRefresh";
+            this.metroTileTrashRefresh.Size = new System.Drawing.Size(79, 33);
+            this.metroTileTrashRefresh.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileTrashRefresh.TabIndex = 7;
+            this.metroTileTrashRefresh.Text = "Обновить";
+            this.metroTileTrashRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileTrashRefresh.Click += new System.EventHandler(this.metroTileTrashRefresh_Click);
+            // 
             // listBoxTrashUids
             // 
             this.listBoxTrashUids.FormattingEnabled = true;
@@ -224,33 +266,163 @@
             this.metroTileSendMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTileSendMSG.Click += new System.EventHandler(this.metroTileSendMSG_Click);
             // 
-            // bgWorker
+            // metroTabPageContactList
             // 
-            
+            this.metroTabPageContactList.Controls.Add(this.metroTileSendMSGContact);
+            this.metroTabPageContactList.Controls.Add(this.textBoxContactEmail);
+            this.metroTabPageContactList.Controls.Add(this.metroLabel4);
+            this.metroTabPageContactList.Controls.Add(this.metroPanelContactInfo);
+            this.metroTabPageContactList.Controls.Add(this.metroTileDeleteContact);
+            this.metroTabPageContactList.Controls.Add(this.metroTileEditContact);
+            this.metroTabPageContactList.Controls.Add(this.metroTileAddContact);
+            this.metroTabPageContactList.Controls.Add(this.listBoxContactList);
+            this.metroTabPageContactList.HorizontalScrollbarBarColor = true;
+            this.metroTabPageContactList.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPageContactList.Name = "metroTabPageContactList";
+            this.metroTabPageContactList.Size = new System.Drawing.Size(720, 313);
+            this.metroTabPageContactList.TabIndex = 4;
+            this.metroTabPageContactList.Text = "Контакты";
+            this.metroTabPageContactList.VerticalScrollbarBarColor = true;
             // 
-            // metroTileTrashRefresh
+            // listBoxContactList
             // 
-            this.metroTileTrashRefresh.Enabled = false;
-            this.metroTileTrashRefresh.Location = new System.Drawing.Point(638, 3);
-            this.metroTileTrashRefresh.Name = "metroTileTrashRefresh";
-            this.metroTileTrashRefresh.Size = new System.Drawing.Size(79, 33);
-            this.metroTileTrashRefresh.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroTileTrashRefresh.TabIndex = 7;
-            this.metroTileTrashRefresh.Text = "Обновить";
-            this.metroTileTrashRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTileTrashRefresh.Click += new System.EventHandler(this.metroTileTrashRefresh_Click);
+            this.listBoxContactList.FormattingEnabled = true;
+            this.listBoxContactList.Location = new System.Drawing.Point(3, 3);
+            this.listBoxContactList.Name = "listBoxContactList";
+            this.listBoxContactList.Size = new System.Drawing.Size(264, 264);
+            this.listBoxContactList.TabIndex = 2;
             // 
-            // metroTileTrashDeleteMSG
+            // metroTileAddContact
             // 
-            this.metroTileTrashDeleteMSG.Enabled = false;
-            this.metroTileTrashDeleteMSG.Location = new System.Drawing.Point(3, 3);
-            this.metroTileTrashDeleteMSG.Name = "metroTileTrashDeleteMSG";
-            this.metroTileTrashDeleteMSG.Size = new System.Drawing.Size(115, 33);
-            this.metroTileTrashDeleteMSG.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroTileTrashDeleteMSG.TabIndex = 8;
-            this.metroTileTrashDeleteMSG.Text = "Удалить письмо";
-            this.metroTileTrashDeleteMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTileTrashDeleteMSG.Click += new System.EventHandler(this.metroTileTrashDeleteMSG_Click);
+            this.metroTileAddContact.Location = new System.Drawing.Point(3, 269);
+            this.metroTileAddContact.Name = "metroTileAddContact";
+            this.metroTileAddContact.Size = new System.Drawing.Size(84, 29);
+            this.metroTileAddContact.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileAddContact.TabIndex = 3;
+            this.metroTileAddContact.Text = "Добавить";
+            this.metroTileAddContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroTileEditContact
+            // 
+            this.metroTileEditContact.Location = new System.Drawing.Point(93, 269);
+            this.metroTileEditContact.Name = "metroTileEditContact";
+            this.metroTileEditContact.Size = new System.Drawing.Size(84, 29);
+            this.metroTileEditContact.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileEditContact.TabIndex = 4;
+            this.metroTileEditContact.Text = "Изменить";
+            this.metroTileEditContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroTileDeleteContact
+            // 
+            this.metroTileDeleteContact.Location = new System.Drawing.Point(183, 269);
+            this.metroTileDeleteContact.Name = "metroTileDeleteContact";
+            this.metroTileDeleteContact.Size = new System.Drawing.Size(84, 29);
+            this.metroTileDeleteContact.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileDeleteContact.TabIndex = 5;
+            this.metroTileDeleteContact.Text = "Удалить";
+            this.metroTileDeleteContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroPanelContactInfo
+            // 
+            this.metroPanelContactInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.metroPanelContactInfo.Controls.Add(this.richTextBoxContactDescription);
+            this.metroPanelContactInfo.Controls.Add(this.textBoxContactName);
+            this.metroPanelContactInfo.Controls.Add(this.textBoxContactSurname);
+            this.metroPanelContactInfo.Controls.Add(this.metroLabel3);
+            this.metroPanelContactInfo.Controls.Add(this.metroLabel2);
+            this.metroPanelContactInfo.Controls.Add(this.metroLabel1);
+            this.metroPanelContactInfo.HorizontalScrollbarBarColor = true;
+            this.metroPanelContactInfo.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanelContactInfo.HorizontalScrollbarSize = 10;
+            this.metroPanelContactInfo.Location = new System.Drawing.Point(273, 3);
+            this.metroPanelContactInfo.Name = "metroPanelContactInfo";
+            this.metroPanelContactInfo.Size = new System.Drawing.Size(447, 198);
+            this.metroPanelContactInfo.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroPanelContactInfo.TabIndex = 6;
+            this.metroPanelContactInfo.VerticalScrollbarBarColor = true;
+            this.metroPanelContactInfo.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanelContactInfo.VerticalScrollbarSize = 10;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel1.Location = new System.Drawing.Point(67, 15);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(78, 19);
+            this.metroLabel1.TabIndex = 2;
+            this.metroLabel1.Text = "Фамилия:";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel2.Location = new System.Drawing.Point(102, 45);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(43, 19);
+            this.metroLabel2.TabIndex = 3;
+            this.metroLabel2.Text = "Имя:";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel3.Location = new System.Drawing.Point(3, 73);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(142, 19);
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Доп. информация:";
+            // 
+            // textBoxContactSurname
+            // 
+            this.textBoxContactSurname.Location = new System.Drawing.Point(151, 14);
+            this.textBoxContactSurname.Name = "textBoxContactSurname";
+            this.textBoxContactSurname.Size = new System.Drawing.Size(280, 20);
+            this.textBoxContactSurname.TabIndex = 5;
+            // 
+            // textBoxContactName
+            // 
+            this.textBoxContactName.Location = new System.Drawing.Point(151, 44);
+            this.textBoxContactName.Name = "textBoxContactName";
+            this.textBoxContactName.Size = new System.Drawing.Size(280, 20);
+            this.textBoxContactName.TabIndex = 6;
+            // 
+            // richTextBoxContactDescription
+            // 
+            this.richTextBoxContactDescription.Location = new System.Drawing.Point(151, 73);
+            this.richTextBoxContactDescription.Name = "richTextBoxContactDescription";
+            this.richTextBoxContactDescription.Size = new System.Drawing.Size(280, 113);
+            this.richTextBoxContactDescription.TabIndex = 7;
+            this.richTextBoxContactDescription.Text = "";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel4.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel4.Location = new System.Drawing.Point(276, 225);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(193, 25);
+            this.metroLabel4.TabIndex = 7;
+            this.metroLabel4.Text = "Электронный адрес:";
+            // 
+            // textBoxContactEmail
+            // 
+            this.textBoxContactEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxContactEmail.Location = new System.Drawing.Point(475, 225);
+            this.textBoxContactEmail.Name = "textBoxContactEmail";
+            this.textBoxContactEmail.Size = new System.Drawing.Size(229, 26);
+            this.textBoxContactEmail.TabIndex = 8;
+            // 
+            // metroTileSendMSGContact
+            // 
+            this.metroTileSendMSGContact.Location = new System.Drawing.Point(568, 269);
+            this.metroTileSendMSGContact.Name = "metroTileSendMSGContact";
+            this.metroTileSendMSGContact.Size = new System.Drawing.Size(136, 29);
+            this.metroTileSendMSGContact.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileSendMSGContact.TabIndex = 9;
+            this.metroTileSendMSGContact.Text = "Отпрвить письмо";
+            this.metroTileSendMSGContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainWindow
             // 
@@ -271,6 +443,10 @@
             this.metroTabPageInbox.ResumeLayout(false);
             this.metroTabPageSent.ResumeLayout(false);
             this.metroTabPageTrash.ResumeLayout(false);
+            this.metroTabPageContactList.ResumeLayout(false);
+            this.metroTabPageContactList.PerformLayout();
+            this.metroPanelContactInfo.ResumeLayout(false);
+            this.metroPanelContactInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,5 +473,20 @@
         private MetroFramework.Controls.MetroTile metroTileSentRefresh;
         private MetroFramework.Controls.MetroTile metroTileTrashDeleteMSG;
         private MetroFramework.Controls.MetroTile metroTileTrashRefresh;
+        private MetroFramework.Controls.MetroTabPage metroTabPageContactList;
+        private MetroFramework.Controls.MetroPanel metroPanelContactInfo;
+        private MetroFramework.Controls.MetroTile metroTileDeleteContact;
+        private MetroFramework.Controls.MetroTile metroTileEditContact;
+        private MetroFramework.Controls.MetroTile metroTileAddContact;
+        private System.Windows.Forms.ListBox listBoxContactList;
+        private MetroFramework.Controls.MetroTile metroTileSendMSGContact;
+        private System.Windows.Forms.TextBox textBoxContactEmail;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.RichTextBox richTextBoxContactDescription;
+        private System.Windows.Forms.TextBox textBoxContactName;
+        private System.Windows.Forms.TextBox textBoxContactSurname;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }

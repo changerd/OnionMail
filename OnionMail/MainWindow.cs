@@ -27,12 +27,14 @@ namespace OnionMail
         string adress = null;
         string trash = null;
         string sent = null;
+        string contactspath = "contacts.txt";
         List<uint> uidsInbox = new List<uint>();
         List<MailMessage> messagesInbox = new List<MailMessage>();
         List<uint> uidsSent = new List<uint>();
         List<MailMessage> messagesSent = new List<MailMessage>();
         List<uint> uidsTrash = new List<uint>();
         List<MailMessage> messagesTrash = new List<MailMessage>();
+        List<Contacts> contactList = new List<Contacts>();
 
         private void metroTileLogOut_Click(object sender, EventArgs e)
         {
@@ -59,7 +61,7 @@ namespace OnionMail
             metroLabelStatusLogin.Text = login;
             sr.Close();
             File.Delete("tempfile.txt");
-            switch(adress)
+            switch (adress)
             {
                 case "mail.ru":
                     sent = "Отправленные";
@@ -153,12 +155,12 @@ namespace OnionMail
             {
                 MessageBox.Show(gg.Message, "Ошибка");
             }
-        }       
+        }
         private void metroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (metroTabControl1.SelectedIndex == 0)
             {
-                bgWorker = new BackgroundWorker();                
+                bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetInboxUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
                 bgWorker.RunWorkerAsync();
@@ -178,7 +180,7 @@ namespace OnionMail
                 }
                 listBoxInboxUids.DataSource = list;
                 listBoxInboxUids.DisplayMember = "mailhad";
-                listBoxInboxUids.ValueMember = "mailvalue";                
+                listBoxInboxUids.ValueMember = "mailvalue";
             }
             if (metroTabControl1.SelectedIndex == 1)
             {
@@ -228,9 +230,50 @@ namespace OnionMail
                 listBoxTrashUids.DisplayMember = "mailhad";
                 listBoxTrashUids.ValueMember = "mailvalue";
             }
+            if (metroTabControl1.SelectedIndex == 3)
+            {
+                int shag = 0;
+                string[] data;
+                string str;
+                StreamReader f = new StreamReader(contactspath, Encoding.Default);
+                int legenth = File.ReadAllLines(contactspath).Length;
+                try
+                {
+                    contactList = new List<Contacts>();
+                    while ((str = f.ReadLine()) != null)
+                    {
+                        data = str.Split(';');
+                        Contacts c = new Contacts();
+                        c.EmailAdress = data[0];
+                        c.Surname = data[1];
+                        c.Name = data[2];
+                        c.Description = data[3];
+                        contactList.Add(c);
+                        shag++;
+                    }
+                    f.Close();
+                    List<string> list = new List<string>();
+                    foreach (var c in contactList)
+                    {
+                        string value = c.Surname + " " + c.Name + "(" + c.EmailAdress + ")";
+                        list.Add(value);
+                    }
+                    listBoxContactList.DataSource = list;                    
+                    /*textBoxContactSurname.Text = contactList[listBoxContactList.SelectedIndex].Surname.ToString();
+                    textBoxContactName.Text = contactList[listBoxContactList.SelectedIndex].Name.ToString();
+                    richTextBoxContactDescription.Text = contactList[listBoxContactList.SelectedIndex].Description.ToString();
+                    textBoxContactEmail.Text = contactList[listBoxContactList.SelectedIndex].Name.ToString();*/
+                }
+                catch (Exception gg)
+                {
+                    shag++;
+                    f.Close();
+                    MessageBox.Show(shag + " строка в файле. " + gg.Message, "Ошибка");
+                }
+            }
         }
 
-        
+
 
         private void listBoxInboxUids_DoubleClick(object sender, EventArgs e)
         {
@@ -247,7 +290,7 @@ namespace OnionMail
             rtb.Dock = DockStyle.Fill;
         }
         public void richTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
-        {             
+        {
             Process.Start(e.LinkText);
         }
         private void bgWorkerInbox_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
