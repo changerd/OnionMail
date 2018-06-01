@@ -160,6 +160,8 @@ namespace OnionMail
         {
             if (metroTabControl1.SelectedIndex == 0)
             {
+                metroProgressSpinnerStatus.Visible = true;
+                metroLabel5.Visible = true;
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetInboxUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -184,6 +186,8 @@ namespace OnionMail
             }
             if (metroTabControl1.SelectedIndex == 1)
             {
+                metroProgressSpinnerStatus.Visible = true;
+                metroLabel5.Visible = true;
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetSentUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerSent_RunWorkerCompleted);
@@ -208,6 +212,8 @@ namespace OnionMail
             }
             if (metroTabControl1.SelectedIndex == 2)
             {
+                metroProgressSpinnerStatus.Visible = true;
+                metroLabel5.Visible = true;
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetTrashUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerTrash_RunWorkerCompleted);
@@ -299,6 +305,8 @@ namespace OnionMail
             metroTileRefreshInbox.Enabled = true;
             metroTileReplyMSG.Enabled = true;
             listBoxInboxUids.Enabled = true;
+            metroProgressSpinnerStatus.Visible = false;
+            metroLabel5.Visible = false;
             metroTabControl1_SelectedIndexChanged(sender, e);
         }
         private void bgWorkerSent_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -306,6 +314,8 @@ namespace OnionMail
             metroTileSentRefresh.Enabled = true;
             metroTileSentDeleteMSG.Enabled = true;
             listBoxSentUids.Enabled = true;
+            metroProgressSpinnerStatus.Visible = false;
+            metroLabel5.Visible = false;
             metroTabControl1_SelectedIndexChanged(sender, e);
         }
         private void bgWorkerTrash_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -313,6 +323,8 @@ namespace OnionMail
             metroTileTrashDeleteMSG.Enabled = true;
             metroTileTrashRefresh.Enabled = true;
             listBoxTrashUids.Enabled = true;
+            metroProgressSpinnerStatus.Visible = false;
+            metroLabel5.Visible = false;
             metroTabControl1_SelectedIndexChanged(sender, e);
         }
 
@@ -327,6 +339,8 @@ namespace OnionMail
             metroTileRefreshInbox.Enabled = false;
             metroTileReplyMSG.Enabled = false;
             listBoxInboxUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetInboxUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -355,6 +369,8 @@ namespace OnionMail
             metroTileRefreshInbox.Enabled = false;
             metroTileReplyMSG.Enabled = false;
             listBoxInboxUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetInboxUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -401,6 +417,8 @@ namespace OnionMail
             metroTileSentRefresh.Enabled = false;
             metroTileSentDeleteMSG.Enabled = false;
             listBoxSentUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetSentUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -412,6 +430,8 @@ namespace OnionMail
             metroTileSentRefresh.Enabled = false;
             metroTileSentDeleteMSG.Enabled = false;
             listBoxSentUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetSentUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -428,6 +448,8 @@ namespace OnionMail
             metroTileTrashDeleteMSG.Enabled = false;
             metroTileTrashRefresh.Enabled = false;
             listBoxTrashUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetTrashUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -439,6 +461,8 @@ namespace OnionMail
             metroTileTrashDeleteMSG.Enabled = false;
             metroTileTrashRefresh.Enabled = false;
             listBoxTrashUids.Enabled = false;
+            metroProgressSpinnerStatus.Visible = true;
+            metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetTrashUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
@@ -512,12 +536,11 @@ namespace OnionMail
         }
         public void RefreshLabel(object sender, EventArgs e)
         {
-            metroProgressSpinnerStatus.Value += 5;
-            metroLabel5.Visible = true;
+            metroProgressSpinnerStatus.Value += 100;            
         }
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
+        {            
             Timer timer = new Timer();
             timer.Tick += new EventHandler(RefreshLabel);
             timer.Interval = 1000;

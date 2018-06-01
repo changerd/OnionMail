@@ -443,6 +443,7 @@
             this.metroProgressSpinnerStatus.Size = new System.Drawing.Size(32, 32);
             this.metroProgressSpinnerStatus.Style = MetroFramework.MetroColorStyle.Green;
             this.metroProgressSpinnerStatus.TabIndex = 4;
+            this.metroProgressSpinnerStatus.Visible = false;
             // 
             // metroLabel5
             // 
