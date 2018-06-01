@@ -239,7 +239,7 @@ namespace OnionMail
                 int legenth = File.ReadAllLines(contactspath).Length;
                 try
                 {
-                    contactList = new List<Contacts>();
+                    contactList = new List<Contacts>();                    
                     while ((str = f.ReadLine()) != null)
                     {
                         data = str.Split(';');
@@ -443,6 +443,85 @@ namespace OnionMail
             bgWorker.DoWork += (obj, ea) => GetTrashUids();
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
+        }
+
+        private void listBoxContactList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxContactSurname.Text = contactList[listBoxContactList.SelectedIndex].Surname.ToString();
+            textBoxContactName.Text = contactList[listBoxContactList.SelectedIndex].Name.ToString();
+            richTextBoxContactDescription.Text = contactList[listBoxContactList.SelectedIndex].Description.ToString();
+            textBoxContactEmail.Text = contactList[listBoxContactList.SelectedIndex].EmailAdress.ToString();
+        }
+
+        private void metroTileAddContact_Click(object sender, EventArgs e)
+        {            
+            using (StreamWriter sw = new StreamWriter(contactspath, true, Encoding.Default))
+            {
+                string text =textBoxContactEmail.Text + ";" + textBoxContactSurname.Text + ";" + textBoxContactName.Text + ";" + richTextBoxContactDescription.Text + "\n";                
+                sw.Write(text);
+                sw.Close();
+                metroTabControl1_SelectedIndexChanged(sender, e);
+            }
+        }
+
+        private void metroTileSendMSGContact_Click(object sender, EventArgs e)
+        {
+            string path = "tempfile.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                string text = login + ";" + password + ";" + adress;
+                sw.WriteLine(text);
+                sw.Close();
+            }
+            SendMessage form = new SendMessage();
+            form.to = textBoxContactEmail.Text;            
+            form.Show();
+        }
+
+        private void metroTileEditContact_Click(object sender, EventArgs e)
+        {
+            contactList[listBoxContactList.SelectedIndex].EmailAdress = textBoxContactEmail.Text;
+            contactList[listBoxContactList.SelectedIndex].Surname = textBoxContactSurname.Text;
+            contactList[listBoxContactList.SelectedIndex].Name = textBoxContactName.Text;
+            contactList[listBoxContactList.SelectedIndex].Description = richTextBoxContactDescription.Text;
+            using (StreamWriter sw = new StreamWriter(contactspath, false, Encoding.Default))
+            {
+                foreach (var c in contactList)
+                {
+                    string text = c.EmailAdress + ";" + c.Surname + ";" + c.Name + ";" + c.Description + "\n";
+                    sw.Write(text);
+                }
+                sw.Close();
+                metroTabControl1_SelectedIndexChanged(sender, e);
+            }
+        }
+
+        private void metroTileDeleteContact_Click(object sender, EventArgs e)
+        {
+            contactList.RemoveAt(listBoxContactList.SelectedIndex);
+            using (StreamWriter sw = new StreamWriter(contactspath, false, Encoding.Default))
+            {
+                foreach (var c in contactList)
+                {
+                    string text = c.EmailAdress + ";" + c.Surname + ";" + c.Name + ";" + c.Description + "\n";
+                    sw.Write(text);
+                }
+                sw.Close();
+                metroTabControl1_SelectedIndexChanged(sender, e);
+            }
+        }
+        public void RefreshLabel(object sender, EventArgs e)
+        {
+            metroProgressSpinnerStatus.Value += 5;
+            metroLabel5.Visible = true;
+        }
+
+        private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Timer timer = new Timer();
+            timer.Tick += new EventHandler(RefreshLabel);
+            timer.Interval = 1000;
+            timer.Start();
         }
     }
 }

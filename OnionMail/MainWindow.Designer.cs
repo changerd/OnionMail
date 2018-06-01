@@ -62,6 +62,8 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.textBoxContactEmail = new System.Windows.Forms.TextBox();
             this.metroTileSendMSGContact = new MetroFramework.Controls.MetroTile();
+            this.metroProgressSpinnerStatus = new MetroFramework.Controls.MetroProgressSpinner();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPageInbox.SuspendLayout();
             this.metroTabPageSent.SuspendLayout();
@@ -98,7 +100,7 @@
             this.metroTabControl1.Controls.Add(this.metroTabPageContactList);
             this.metroTabControl1.Location = new System.Drawing.Point(27, 102);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 3;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(728, 352);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 0;
@@ -266,6 +268,10 @@
             this.metroTileSendMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTileSendMSG.Click += new System.EventHandler(this.metroTileSendMSG_Click);
             // 
+            // bgWorker
+            // 
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            // 
             // metroTabPageContactList
             // 
             this.metroTabPageContactList.Controls.Add(this.metroTileSendMSGContact);
@@ -291,6 +297,7 @@
             this.listBoxContactList.Name = "listBoxContactList";
             this.listBoxContactList.Size = new System.Drawing.Size(264, 264);
             this.listBoxContactList.TabIndex = 2;
+            this.listBoxContactList.SelectedIndexChanged += new System.EventHandler(this.listBoxContactList_SelectedIndexChanged);
             // 
             // metroTileAddContact
             // 
@@ -301,6 +308,7 @@
             this.metroTileAddContact.TabIndex = 3;
             this.metroTileAddContact.Text = "Добавить";
             this.metroTileAddContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileAddContact.Click += new System.EventHandler(this.metroTileAddContact_Click);
             // 
             // metroTileEditContact
             // 
@@ -311,6 +319,7 @@
             this.metroTileEditContact.TabIndex = 4;
             this.metroTileEditContact.Text = "Изменить";
             this.metroTileEditContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileEditContact.Click += new System.EventHandler(this.metroTileEditContact_Click);
             // 
             // metroTileDeleteContact
             // 
@@ -321,6 +330,7 @@
             this.metroTileDeleteContact.TabIndex = 5;
             this.metroTileDeleteContact.Text = "Удалить";
             this.metroTileDeleteContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileDeleteContact.Click += new System.EventHandler(this.metroTileDeleteContact_Click);
             // 
             // metroPanelContactInfo
             // 
@@ -421,19 +431,44 @@
             this.metroTileSendMSGContact.Size = new System.Drawing.Size(136, 29);
             this.metroTileSendMSGContact.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTileSendMSGContact.TabIndex = 9;
-            this.metroTileSendMSGContact.Text = "Отпрвить письмо";
+            this.metroTileSendMSGContact.Text = "Отправить письмо";
             this.metroTileSendMSGContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileSendMSGContact.Click += new System.EventHandler(this.metroTileSendMSGContact_Click);
+            // 
+            // metroProgressSpinnerStatus
+            // 
+            this.metroProgressSpinnerStatus.Location = new System.Drawing.Point(719, 64);
+            this.metroProgressSpinnerStatus.Maximum = 100;
+            this.metroProgressSpinnerStatus.Name = "metroProgressSpinnerStatus";
+            this.metroProgressSpinnerStatus.Size = new System.Drawing.Size(32, 32);
+            this.metroProgressSpinnerStatus.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroProgressSpinnerStatus.TabIndex = 4;
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(633, 72);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(71, 19);
+            this.metroLabel5.TabIndex = 5;
+            this.metroLabel5.Text = "Загрузка...";
+            this.metroLabel5.Visible = false;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(782, 477);
+            this.Controls.Add(this.metroLabel5);
+            this.Controls.Add(this.metroProgressSpinnerStatus);
             this.Controls.Add(this.metroTileSendMSG);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.metroLabelStatusLogin);
             this.Controls.Add(this.metroTileLogOut);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(782, 477);
+            this.MinimumSize = new System.Drawing.Size(782, 477);
             this.Name = "MainWindow";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Onion Mail";
@@ -488,5 +523,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinnerStatus;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
     }
 }

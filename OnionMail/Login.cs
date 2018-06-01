@@ -40,7 +40,7 @@ namespace OnionMail
                 {
                     string path = "tempfile.txt";                    
                     MessageBox.Show("Вход выполнен успешно!", "Onion Mail");
-                    using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+                    using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
                     {
                         string text = login + ";" + textBoxPassword.Text + ";" + comboBoxMail.Text;
                         sw.WriteLine(text);
