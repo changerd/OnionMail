@@ -38,11 +38,15 @@
             this.metroTileReplyMSG = new MetroFramework.Controls.MetroTile();
             this.listBoxInboxUids = new System.Windows.Forms.ListBox();
             this.metroTabPageSent = new MetroFramework.Controls.MetroTabPage();
+            this.metroTileSentDeleteMSG = new MetroFramework.Controls.MetroTile();
+            this.metroTileSentRefresh = new MetroFramework.Controls.MetroTile();
+            this.listBoxSentUids = new System.Windows.Forms.ListBox();
             this.metroTabPageTrash = new MetroFramework.Controls.MetroTabPage();
+            this.listBoxTrashUids = new System.Windows.Forms.ListBox();
             this.metroTileSendMSG = new MetroFramework.Controls.MetroTile();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.listBoxSentUids = new System.Windows.Forms.ListBox();
-            this.listBoxTrashUids = new System.Windows.Forms.ListBox();
+            this.metroTileTrashRefresh = new MetroFramework.Controls.MetroTile();
+            this.metroTileTrashDeleteMSG = new MetroFramework.Controls.MetroTile();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPageInbox.SuspendLayout();
             this.metroTabPageSent.SuspendLayout();
@@ -74,10 +78,9 @@
             this.metroTabControl1.Controls.Add(this.metroTabPageInbox);
             this.metroTabControl1.Controls.Add(this.metroTabPageSent);
             this.metroTabControl1.Controls.Add(this.metroTabPageTrash);
-            this.metroTabControl1.Enabled = false;
             this.metroTabControl1.Location = new System.Drawing.Point(27, 102);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(728, 352);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTabControl1.TabIndex = 2;
@@ -99,6 +102,7 @@
             // 
             // metroTileRefreshInbox
             // 
+            this.metroTileRefreshInbox.Enabled = false;
             this.metroTileRefreshInbox.Location = new System.Drawing.Point(638, 3);
             this.metroTileRefreshInbox.Name = "metroTileRefreshInbox";
             this.metroTileRefreshInbox.Size = new System.Drawing.Size(79, 33);
@@ -110,6 +114,7 @@
             // 
             // metroTileDeleteMSG
             // 
+            this.metroTileDeleteMSG.Enabled = false;
             this.metroTileDeleteMSG.Location = new System.Drawing.Point(84, 3);
             this.metroTileDeleteMSG.Name = "metroTileDeleteMSG";
             this.metroTileDeleteMSG.Size = new System.Drawing.Size(115, 33);
@@ -121,6 +126,7 @@
             // 
             // metroTileReplyMSG
             // 
+            this.metroTileReplyMSG.Enabled = false;
             this.metroTileReplyMSG.Location = new System.Drawing.Point(3, 3);
             this.metroTileReplyMSG.Name = "metroTileReplyMSG";
             this.metroTileReplyMSG.Size = new System.Drawing.Size(75, 33);
@@ -141,6 +147,8 @@
             // 
             // metroTabPageSent
             // 
+            this.metroTabPageSent.Controls.Add(this.metroTileSentDeleteMSG);
+            this.metroTabPageSent.Controls.Add(this.metroTileSentRefresh);
             this.metroTabPageSent.Controls.Add(this.listBoxSentUids);
             this.metroTabPageSent.HorizontalScrollbarBarColor = true;
             this.metroTabPageSent.Location = new System.Drawing.Point(4, 35);
@@ -150,8 +158,43 @@
             this.metroTabPageSent.Text = "Отправленные";
             this.metroTabPageSent.VerticalScrollbarBarColor = true;
             // 
+            // metroTileSentDeleteMSG
+            // 
+            this.metroTileSentDeleteMSG.Enabled = false;
+            this.metroTileSentDeleteMSG.Location = new System.Drawing.Point(3, 3);
+            this.metroTileSentDeleteMSG.Name = "metroTileSentDeleteMSG";
+            this.metroTileSentDeleteMSG.Size = new System.Drawing.Size(118, 33);
+            this.metroTileSentDeleteMSG.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileSentDeleteMSG.TabIndex = 8;
+            this.metroTileSentDeleteMSG.Text = "Удалить письмо";
+            this.metroTileSentDeleteMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileSentDeleteMSG.Click += new System.EventHandler(this.metroTileSentDeleteMSG_Click);
+            // 
+            // metroTileSentRefresh
+            // 
+            this.metroTileSentRefresh.Enabled = false;
+            this.metroTileSentRefresh.Location = new System.Drawing.Point(638, 3);
+            this.metroTileSentRefresh.Name = "metroTileSentRefresh";
+            this.metroTileSentRefresh.Size = new System.Drawing.Size(79, 33);
+            this.metroTileSentRefresh.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileSentRefresh.TabIndex = 6;
+            this.metroTileSentRefresh.Text = "Обновить";
+            this.metroTileSentRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileSentRefresh.Click += new System.EventHandler(this.metroTileSentRefresh_Click);
+            // 
+            // listBoxSentUids
+            // 
+            this.listBoxSentUids.FormattingEnabled = true;
+            this.listBoxSentUids.Location = new System.Drawing.Point(3, 42);
+            this.listBoxSentUids.Name = "listBoxSentUids";
+            this.listBoxSentUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxSentUids.TabIndex = 3;
+            this.listBoxSentUids.DoubleClick += new System.EventHandler(this.listBoxSentUids_DoubleClick);
+            // 
             // metroTabPageTrash
             // 
+            this.metroTabPageTrash.Controls.Add(this.metroTileTrashDeleteMSG);
+            this.metroTabPageTrash.Controls.Add(this.metroTileTrashRefresh);
             this.metroTabPageTrash.Controls.Add(this.listBoxTrashUids);
             this.metroTabPageTrash.HorizontalScrollbarBarColor = true;
             this.metroTabPageTrash.Location = new System.Drawing.Point(4, 35);
@@ -160,6 +203,15 @@
             this.metroTabPageTrash.TabIndex = 3;
             this.metroTabPageTrash.Text = "Корзина";
             this.metroTabPageTrash.VerticalScrollbarBarColor = true;
+            // 
+            // listBoxTrashUids
+            // 
+            this.listBoxTrashUids.FormattingEnabled = true;
+            this.listBoxTrashUids.Location = new System.Drawing.Point(3, 42);
+            this.listBoxTrashUids.Name = "listBoxTrashUids";
+            this.listBoxTrashUids.Size = new System.Drawing.Size(714, 251);
+            this.listBoxTrashUids.TabIndex = 4;
+            this.listBoxTrashUids.DoubleClick += new System.EventHandler(this.listBoxTrashUids_DoubleClick);
             // 
             // metroTileSendMSG
             // 
@@ -174,25 +226,31 @@
             // 
             // bgWorker
             // 
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            
             // 
-            // listBoxSentUids
+            // metroTileTrashRefresh
             // 
-            this.listBoxSentUids.FormattingEnabled = true;
-            this.listBoxSentUids.Location = new System.Drawing.Point(3, 42);
-            this.listBoxSentUids.Name = "listBoxSentUids";
-            this.listBoxSentUids.Size = new System.Drawing.Size(714, 251);
-            this.listBoxSentUids.TabIndex = 3;
-            this.listBoxSentUids.DoubleClick += new System.EventHandler(this.listBoxSentUids_DoubleClick);
+            this.metroTileTrashRefresh.Enabled = false;
+            this.metroTileTrashRefresh.Location = new System.Drawing.Point(638, 3);
+            this.metroTileTrashRefresh.Name = "metroTileTrashRefresh";
+            this.metroTileTrashRefresh.Size = new System.Drawing.Size(79, 33);
+            this.metroTileTrashRefresh.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileTrashRefresh.TabIndex = 7;
+            this.metroTileTrashRefresh.Text = "Обновить";
+            this.metroTileTrashRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileTrashRefresh.Click += new System.EventHandler(this.metroTileTrashRefresh_Click);
             // 
-            // listBoxTrashUids
+            // metroTileTrashDeleteMSG
             // 
-            this.listBoxTrashUids.FormattingEnabled = true;
-            this.listBoxTrashUids.Location = new System.Drawing.Point(3, 42);
-            this.listBoxTrashUids.Name = "listBoxTrashUids";
-            this.listBoxTrashUids.Size = new System.Drawing.Size(714, 251);
-            this.listBoxTrashUids.TabIndex = 4;
-            this.listBoxTrashUids.DoubleClick += new System.EventHandler(this.listBoxTrashUids_DoubleClick);
+            this.metroTileTrashDeleteMSG.Enabled = false;
+            this.metroTileTrashDeleteMSG.Location = new System.Drawing.Point(3, 3);
+            this.metroTileTrashDeleteMSG.Name = "metroTileTrashDeleteMSG";
+            this.metroTileTrashDeleteMSG.Size = new System.Drawing.Size(115, 33);
+            this.metroTileTrashDeleteMSG.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroTileTrashDeleteMSG.TabIndex = 8;
+            this.metroTileTrashDeleteMSG.Text = "Удалить письмо";
+            this.metroTileTrashDeleteMSG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTileTrashDeleteMSG.Click += new System.EventHandler(this.metroTileTrashDeleteMSG_Click);
             // 
             // MainWindow
             // 
@@ -220,6 +278,7 @@
 
         #endregion
 
+
         private MetroFramework.Controls.MetroTile metroTileLogOut;
         private MetroFramework.Controls.MetroLabel metroLabelStatusLogin;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
@@ -232,7 +291,11 @@
         private MetroFramework.Controls.MetroTile metroTileDeleteMSG;
         private MetroFramework.Controls.MetroTile metroTileReplyMSG;
         private MetroFramework.Controls.MetroTile metroTileRefreshInbox;
-        private System.Windows.Forms.ListBox listBoxSentUids;
+        private System.Windows.Forms.ListBox listBoxSentUids; 
         private System.Windows.Forms.ListBox listBoxTrashUids;
+        private MetroFramework.Controls.MetroTile metroTileSentDeleteMSG;
+        private MetroFramework.Controls.MetroTile metroTileSentRefresh;
+        private MetroFramework.Controls.MetroTile metroTileTrashDeleteMSG;
+        private MetroFramework.Controls.MetroTile metroTileTrashRefresh;
     }
 }
