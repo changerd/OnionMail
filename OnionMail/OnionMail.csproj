@@ -119,6 +119,16 @@
     <EmbeddedResource Include="SendMessage.resx">
       <DependentUpon>SendMessage.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".vs\.gitlab" />
+    <None Include=".vs\OnionMail\v15\.suo" />
+    <None Include=".vs\OnionMail\v15\Server\sqlite3\db.lock" />
+    <None Include=".vs\OnionMail\v15\Server\sqlite3\storage.ide" />
+    <None Include=".vs\OnionMail\v15\Server\sqlite3\storage.ide-shm" />
+    <None Include=".vs\OnionMail\v15\Server\sqlite3\storage.ide-wal" />
+    <None Include=".vs\OnionMail\v15\sqlite3\db.lock" />
+    <None Include=".vs\OnionMail\v15\sqlite3\storage.ide" />
+    <None Include=".vs\OnionMail\v15\sqlite3\storage.ide-shm" />
+    <None Include=".vs\OnionMail\v15\sqlite3\storage.ide-wal" />
     <None Include="bin\Debug\OnionMail.exe.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
