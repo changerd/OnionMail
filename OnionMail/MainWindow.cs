@@ -238,6 +238,8 @@ namespace OnionMail
             }
             if (metroTabControl1.SelectedIndex == 3)
             {
+                FileStream fail = new FileStream(contactspath, FileMode.OpenOrCreate);
+                fail.Close();
                 int shag = 0;
                 string[] data;
                 string str;
