@@ -165,24 +165,7 @@ namespace OnionMail
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetInboxUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
-                bgWorker.RunWorkerAsync();
-                List<MSGList> list = new List<MSGList>();
-                foreach (var m in messagesInbox)
-                {
-                    MSGList msg = new MSGList
-                    {
-                        mailhad = "От " + m.From + ": " + m.Subject,
-                        mailvalue = "Тема: " + m.Subject + "\n"
-                        + "От " + m.From + "\n"
-                        + "Кому: " + m.To + "\n"
-                        + "\n"
-                        + m.Body,
-                    };
-                    list.Add(msg);
-                }
-                listBoxInboxUids.DataSource = list;
-                listBoxInboxUids.DisplayMember = "mailhad";
-                listBoxInboxUids.ValueMember = "mailvalue";
+                bgWorker.RunWorkerAsync();                
             }
             if (metroTabControl1.SelectedIndex == 1)
             {
@@ -191,24 +174,7 @@ namespace OnionMail
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetSentUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerSent_RunWorkerCompleted);
-                bgWorker.RunWorkerAsync();
-                List<MSGList> list = new List<MSGList>();
-                foreach (var m in messagesSent)
-                {
-                    MSGList msg = new MSGList
-                    {
-                        mailhad = "От " + m.From + ": " + m.Subject,
-                        mailvalue = "Тема: " + m.Subject + "\n"
-                        + "От " + m.From + "\n"
-                        + "Кому: " + m.To + "\n"
-                        + "\n"
-                        + m.Body,
-                    };
-                    list.Add(msg);
-                }
-                listBoxSentUids.DataSource = list;
-                listBoxSentUids.DisplayMember = "mailhad";
-                listBoxSentUids.ValueMember = "mailvalue";
+                bgWorker.RunWorkerAsync();                
             }
             if (metroTabControl1.SelectedIndex == 2)
             {
@@ -217,24 +183,7 @@ namespace OnionMail
                 bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += (obj, ea) => GetTrashUids();
                 bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerTrash_RunWorkerCompleted);
-                bgWorker.RunWorkerAsync();
-                List<MSGList> list = new List<MSGList>();
-                foreach (var m in messagesTrash)
-                {
-                    MSGList msg = new MSGList
-                    {
-                        mailhad = "От " + m.From + ": " + m.Subject,
-                        mailvalue = "Тема: " + m.Subject + "\n"
-                        + "От " + m.From + "\n"
-                        + "Кому: " + m.To + "\n"
-                        + "\n"
-                        + m.Body,
-                    };
-                    list.Add(msg);
-                }
-                listBoxTrashUids.DataSource = list;
-                listBoxTrashUids.DisplayMember = "mailhad";
-                listBoxTrashUids.ValueMember = "mailvalue";
+                bgWorker.RunWorkerAsync();                
             }
             if (metroTabControl1.SelectedIndex == 3)
             {
@@ -247,7 +196,7 @@ namespace OnionMail
                 int legenth = File.ReadAllLines(contactspath).Length;
                 try
                 {
-                    contactList = new List<Contacts>();                    
+                    contactList = new List<Contacts>();
                     while ((str = f.ReadLine()) != null)
                     {
                         data = str.Split(';');
@@ -266,11 +215,7 @@ namespace OnionMail
                         string value = c.Surname + " " + c.Name + "(" + c.EmailAdress + ")";
                         list.Add(value);
                     }
-                    listBoxContactList.DataSource = list;                    
-                    /*textBoxContactSurname.Text = contactList[listBoxContactList.SelectedIndex].Surname.ToString();
-                    textBoxContactName.Text = contactList[listBoxContactList.SelectedIndex].Name.ToString();
-                    richTextBoxContactDescription.Text = contactList[listBoxContactList.SelectedIndex].Description.ToString();
-                    textBoxContactEmail.Text = contactList[listBoxContactList.SelectedIndex].Name.ToString();*/
+                    listBoxContactList.DataSource = list;
                 }
                 catch (Exception gg)
                 {
@@ -303,31 +248,79 @@ namespace OnionMail
         }
         private void bgWorkerInbox_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            List<MSGList> list = new List<MSGList>();
+            foreach (var m in messagesInbox)
+            {
+                MSGList msg = new MSGList
+                {
+                    mailhad = "От " + m.From + ": " + m.Subject,
+                    mailvalue = "Тема: " + m.Subject + "\n"
+                    + "От " + m.From + "\n"
+                    + "Кому: " + m.To + "\n"
+                    + "\n"
+                    + m.Body,
+                };
+                list.Add(msg);
+            }
+            listBoxInboxUids.DataSource = list;
+            listBoxInboxUids.DisplayMember = "mailhad";
+            listBoxInboxUids.ValueMember = "mailvalue";
             metroTileDeleteMSG.Enabled = true;
             metroTileRefreshInbox.Enabled = true;
             metroTileReplyMSG.Enabled = true;
             listBoxInboxUids.Enabled = true;
             metroProgressSpinnerStatus.Visible = false;
             metroLabel5.Visible = false;
-            metroTabControl1_SelectedIndexChanged(sender, e);
         }
         private void bgWorkerSent_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            List<MSGList> list = new List<MSGList>();
+            foreach (var m in messagesSent)
+            {
+                MSGList msg = new MSGList
+                {
+                    mailhad = "От " + m.From + ": " + m.Subject,
+                    mailvalue = "Тема: " + m.Subject + "\n"
+                    + "От " + m.From + "\n"
+                    + "Кому: " + m.To + "\n"
+                    + "\n"
+                    + m.Body,
+                };
+                list.Add(msg);
+            }
+            listBoxSentUids.DataSource = list;
+            listBoxSentUids.DisplayMember = "mailhad";
+            listBoxSentUids.ValueMember = "mailvalue";
             metroTileSentRefresh.Enabled = true;
             metroTileSentDeleteMSG.Enabled = true;
             listBoxSentUids.Enabled = true;
             metroProgressSpinnerStatus.Visible = false;
             metroLabel5.Visible = false;
-            metroTabControl1_SelectedIndexChanged(sender, e);
         }
         private void bgWorkerTrash_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            List<MSGList> list = new List<MSGList>();
+            foreach (var m in messagesTrash)
+            {
+                MSGList msg = new MSGList
+                {
+                    mailhad = "От " + m.From + ": " + m.Subject,
+                    mailvalue = "Тема: " + m.Subject + "\n"
+                    + "От " + m.From + "\n"
+                    + "Кому: " + m.To + "\n"
+                    + "\n"
+                    + m.Body,
+                };
+                list.Add(msg);
+            }
+            listBoxTrashUids.DataSource = list;
+            listBoxTrashUids.DisplayMember = "mailhad";
+            listBoxTrashUids.ValueMember = "mailvalue";
             metroTileTrashDeleteMSG.Enabled = true;
             metroTileTrashRefresh.Enabled = true;
             listBoxTrashUids.Enabled = true;
             metroProgressSpinnerStatus.Visible = false;
             metroLabel5.Visible = false;
-            metroTabControl1_SelectedIndexChanged(sender, e);
         }
 
         private void metroTileDeleteMSG_Click(object sender, EventArgs e)
@@ -480,10 +473,10 @@ namespace OnionMail
         }
 
         private void metroTileAddContact_Click(object sender, EventArgs e)
-        {            
+        {
             using (StreamWriter sw = new StreamWriter(contactspath, true, Encoding.Default))
             {
-                string text =textBoxContactEmail.Text + ";" + textBoxContactSurname.Text + ";" + textBoxContactName.Text + ";" + richTextBoxContactDescription.Text + "\n";                
+                string text = textBoxContactEmail.Text + ";" + textBoxContactSurname.Text + ";" + textBoxContactName.Text + ";" + richTextBoxContactDescription.Text + "\n";
                 sw.Write(text);
                 sw.Close();
                 metroTabControl1_SelectedIndexChanged(sender, e);
@@ -500,7 +493,7 @@ namespace OnionMail
                 sw.Close();
             }
             SendMessage form = new SendMessage();
-            form.to = textBoxContactEmail.Text;            
+            form.to = textBoxContactEmail.Text;
             form.Show();
         }
 
@@ -538,11 +531,11 @@ namespace OnionMail
         }
         public void RefreshLabel(object sender, EventArgs e)
         {
-            metroProgressSpinnerStatus.Value += 100;            
+            metroProgressSpinnerStatus.Value += 100;
         }
 
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {            
+        {
             Timer timer = new Timer();
             timer.Tick += new EventHandler(RefreshLabel);
             timer.Interval = 1000;
