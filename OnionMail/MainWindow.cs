@@ -1,18 +1,14 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using S22.Imap;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MetroFramework.Forms;
-using MetroFramework.Controls;
-using System.IO;
-using S22.Imap;
-using System.Net.Mail;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.Windows.Forms;
 
 namespace OnionMail
 {
@@ -143,12 +139,12 @@ namespace OnionMail
                 {
                     Client.DefaultMailbox = trash;
                     IEnumerable<uint> uids = Client.Search(SearchCondition.All());
-                    IEnumerable<MailMessage> messages = Client.GetMessages(uids.Reverse());
+                    IEnumerable<MailMessage> messages = Client.GetMessages(uids);
                     uidsTrash = new List<uint>();
                     messagesTrash = new List<MailMessage>();
                     messagesTrash = messages.ToList();
                     uidsTrash = uids.ToList();
-                    uidsTrash.Reverse();
+                    //uidsTrash.Reverse();
                 }
             }
             catch (Exception gg)
@@ -329,7 +325,8 @@ namespace OnionMail
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
                 Client.DeleteMessage(uidsInbox[listBoxInboxUids.SelectedIndex]);
-            }
+                //Client.MoveMessage(uidsInbox[listBoxInboxUids.SelectedIndex], trash, "INBOX");
+            }            
             metroTileDeleteMSG.Enabled = false;
             metroTileRefreshInbox.Enabled = false;
             metroTileReplyMSG.Enabled = false;
@@ -407,8 +404,8 @@ namespace OnionMail
             string imapadress = "imap." + adress;
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
-                Client.DeleteMessage(uidsSent[listBoxSentUids.SelectedIndex]);
-            }
+                Client.SetMessageFlags(uidsSent[listBoxSentUids.SelectedIndex], sent, MessageFlag.Deleted);                
+            }            
             metroTileSentRefresh.Enabled = false;
             metroTileSentDeleteMSG.Enabled = false;
             listBoxSentUids.Enabled = false;
@@ -416,7 +413,7 @@ namespace OnionMail
             metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetSentUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerSent_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
@@ -429,7 +426,7 @@ namespace OnionMail
             metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetSentUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerSent_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
@@ -438,7 +435,7 @@ namespace OnionMail
             string imapadress = "imap." + adress;
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
-                Client.DeleteMessage(uidsTrash[listBoxTrashUids.SelectedIndex]);
+                Client.DeleteMessage(uidsTrash[listBoxTrashUids.SelectedIndex]);                
             }
             metroTileTrashDeleteMSG.Enabled = false;
             metroTileTrashRefresh.Enabled = false;
@@ -447,7 +444,7 @@ namespace OnionMail
             metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetTrashUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerTrash_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
@@ -460,7 +457,7 @@ namespace OnionMail
             metroLabel5.Visible = true;
             bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (obj, ea) => GetTrashUids();
-            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerInbox_RunWorkerCompleted);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorkerTrash_RunWorkerCompleted);
             bgWorker.RunWorkerAsync();
         }
 
