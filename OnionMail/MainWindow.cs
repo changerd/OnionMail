@@ -108,6 +108,32 @@ namespace OnionMail
                 MessageBox.Show(gg.Message, "Ошибка");
             }
         }
+        private void bgWorkerInbox_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<MSGList> list = new List<MSGList>();
+            foreach (var m in messagesInbox)
+            {
+                MSGList msg = new MSGList
+                {
+                    mailhad = "От " + m.From + ": " + m.Subject,
+                    mailvalue = "Тема: " + m.Subject + "\n"
+                    + "От " + m.From + "\n"
+                    + "Кому: " + m.To + "\n"
+                    + "\n"
+                    + m.Body,
+                };
+                list.Add(msg);
+            }
+            listBoxInboxUids.DataSource = list;
+            listBoxInboxUids.DisplayMember = "mailhad";
+            listBoxInboxUids.ValueMember = "mailvalue";
+            metroTileDeleteMSG.Enabled = true;
+            metroTileRefreshInbox.Enabled = true;
+            metroTileReplyMSG.Enabled = true;
+            listBoxInboxUids.Enabled = true;
+            metroProgressSpinnerStatus.Visible = false;
+            metroLabel5.Visible = false;
+        }
         public void GetSentUids()
         {
             try
@@ -242,32 +268,7 @@ namespace OnionMail
         {
             Process.Start(e.LinkText);
         }
-        private void bgWorkerInbox_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            List<MSGList> list = new List<MSGList>();
-            foreach (var m in messagesInbox)
-            {
-                MSGList msg = new MSGList
-                {
-                    mailhad = "От " + m.From + ": " + m.Subject,
-                    mailvalue = "Тема: " + m.Subject + "\n"
-                    + "От " + m.From + "\n"
-                    + "Кому: " + m.To + "\n"
-                    + "\n"
-                    + m.Body,
-                };
-                list.Add(msg);
-            }
-            listBoxInboxUids.DataSource = list;
-            listBoxInboxUids.DisplayMember = "mailhad";
-            listBoxInboxUids.ValueMember = "mailvalue";
-            metroTileDeleteMSG.Enabled = true;
-            metroTileRefreshInbox.Enabled = true;
-            metroTileReplyMSG.Enabled = true;
-            listBoxInboxUids.Enabled = true;
-            metroProgressSpinnerStatus.Visible = false;
-            metroLabel5.Visible = false;
-        }
+        
         private void bgWorkerSent_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             List<MSGList> list = new List<MSGList>();
@@ -324,8 +325,7 @@ namespace OnionMail
             string imapadress = "imap." + adress;
             using (ImapClient Client = new ImapClient(imapadress, 993, login, password, AuthMethod.Login, true))
             {
-                Client.DeleteMessage(uidsInbox[listBoxInboxUids.SelectedIndex]);
-                //Client.MoveMessage(uidsInbox[listBoxInboxUids.SelectedIndex], trash, "INBOX");
+                Client.DeleteMessage(uidsInbox[listBoxInboxUids.SelectedIndex]);                
             }            
             metroTileDeleteMSG.Enabled = false;
             metroTileRefreshInbox.Enabled = false;

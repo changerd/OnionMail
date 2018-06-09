@@ -12,7 +12,3 @@ D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.Login.resources
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.MainWindow.resources
 D:\pr\OnionMail\OnionMail\obj\Debug\OnionMail.SendMessage.resources
 D:\pr\OnionMail\OnionMail\bin\Debug\BouncyCastle.Crypto.dll
-D:\pr\OnionMail\OnionMail\bin\Debug\MailKit.dll
-D:\pr\OnionMail\OnionMail\bin\Debug\MimeKit.dll
-D:\pr\OnionMail\OnionMail\bin\Debug\MailKit.xml
-D:\pr\OnionMail\OnionMail\bin\Debug\MimeKit.xml
